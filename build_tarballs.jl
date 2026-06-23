@@ -6,8 +6,8 @@ const YGGDRASIL_DIR = "./yggdrasil-files/"
 include(joinpath(YGGDRASIL_DIR, "platforms", "macos_sdks.jl"))
 include(joinpath(YGGDRASIL_DIR, "platforms", "mpi.jl"))
 
-name = "libdealii_trixi"
-version = v"0.1"
+name = "libdealii_trixi_paper2026"
+version = v"0.1.2"
 
 # collection of sources required to complete build
 sources = [
@@ -91,7 +91,7 @@ platforms = expand_cxxstring_abis(platforms)
 
 # the products that we will ensure are always built
 products = [
-    LibraryProduct("libdealii_trixi", :libdealii_trixi),
+    LibraryProduct("libdealii_trixi_paper2026", :libdealii_trixi_paper2026),
 ]
 
 # dependencies that must be installed before this package can be built

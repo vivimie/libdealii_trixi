@@ -19,11 +19,11 @@ endif()
 
 deal_ii_initialize_cached_variables()
 
-project(dealii_trixi CXX C)
+project(dealii_trixi_paper2026 CXX C)
 
 include_directories(include)
 
-add_library(dealii_trixi SHARED ${TARGET_SRC})
+add_library(dealii_trixi_paper2026 SHARED ${TARGET_SRC})
 
 add_custom_target(debug
   COMMAND ${CMAKE_COMMAND} -DCMAKE_BUILD_TYPE=Debug ${CMAKE_SOURCE_DIR}
@@ -37,10 +37,10 @@ add_custom_target(release
 
 deal_ii_initialize_cached_variables()
 
-DEAL_II_SETUP_TARGET(dealii_trixi)
+DEAL_II_SETUP_TARGET(dealii_trixi_paper2026)
 
-target_link_libraries("dealii_trixi")
+target_link_libraries("dealii_trixi_paper2026")
 include(GNUInstallDirs)
-install(TARGETS dealii_trixi
+install(TARGETS dealii_trixi_paper2026
    COMPONENT library
 )
