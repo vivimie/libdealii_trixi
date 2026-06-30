@@ -1139,7 +1139,7 @@ namespace PoissonModule
     char filename[64] = "mesh_output/grid_out.x.0000.svg";
     int kth_out = 0;
     GridOut grid_out = GridOut();
-    constexpr static bool gridoutput = true;
+    constexpr static bool gridoutput = false;
 
     void
     output_grid() override
@@ -1206,16 +1206,23 @@ namespace PoissonModule
         num_cells = triangulation.n_locally_owned_active_cells();
         MPI_Allreduce(MPI_IN_PLACE, &counter, 1, MPI_LONG, MPI_SUM, MPI_COMM_WORLD);
         MPI_Allreduce(MPI_IN_PLACE, &num_cells, 1, MPI_LONG, MPI_SUM, MPI_COMM_WORLD);
-        if (!rank) {
-           std::cerr << "pre-adaption " << num_cells << " ; iterator size " << counter << "\n";
+        if constexpr (gridoutput) {
+          if (!rank) {
+            std::cerr << "pre-adaption " << num_cells
+                      << " ; iterator size " << counter << "\n";
+          }
         }
 
         triangulation.execute_coarsening_and_refinement();
 
         num_cells = triangulation.n_locally_owned_active_cells();
         MPI_Allreduce(MPI_IN_PLACE, &num_cells, 1, MPI_LONG, MPI_SUM, MPI_COMM_WORLD);
-        if (!rank)
-           std::cerr << "post-adaption " << num_cells << " iteration number: " << kth_out << "\n";
+        if constexpr (gridoutput) {
+          if (!rank) {
+            std::cerr << "post-adaption " << num_cells
+                      << " ; iteration number: " << kth_out << "\n";
+          }
+        }
       }
 
       // update any other data structures

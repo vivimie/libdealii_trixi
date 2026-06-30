@@ -7,7 +7,7 @@ include(joinpath(YGGDRASIL_DIR, "platforms", "macos_sdks.jl"))
 include(joinpath(YGGDRASIL_DIR, "platforms", "mpi.jl"))
 
 name = "libdealii_trixi_paper2026"
-version = v"0.1.3"
+version = v"0.1.4"
 
 # collection of sources required to complete build
 sources = [
